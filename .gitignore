@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Deploy / build artifacts
+function.zip
+*.zip
+.aws-sam/
+samconfig.toml
+
+# Secrets and local env (never commit)
+.env
+.env.*
+!.env.example
+*.pem
+credentials
+credentials.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Classic Express on Lambda — handler + serverless-http + HTTP API (old pattern)
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+    Runtime: nodejs20.x
+
+Resources:
+  ExpressFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lambda-old-demo
+      CodeUri: .
+      Handler: handler.handler
+      Description: Classic Lambda Express demo (API Gateway event → serverless-http)
+      Events:
+        Root:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: ANY
+        Proxy:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
+Outputs:
+  ApiUrl:
+    Description: HTTP API endpoint URL
+    Value: !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/'
+  FunctionName:
+    Description: Lambda function name
+    Value: !Ref ExpressFunction

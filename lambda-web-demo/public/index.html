@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lambda Web Functions Live Status Dashboard" />
+  <title>Lambda Web Functions Demo</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-brand">
+        <p class="product-label">CLOUD OPERATIONS</p>
+        <h1 class="app-name">Lambda Web Functions Demo</h1>
+      </div>
+      <div class="header-meta">
+        <span
+          id="env-badge"
+          class="env-badge env-badge--pending"
+          aria-live="polite"
+        >DETECTING…</span>
+        <div
+          id="connection-status"
+          class="connection"
+          role="status"
+          aria-live="polite"
+        >
+          <span class="connection-dot" aria-hidden="true"></span>
+          <span class="connection-label">Checking connection…</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h2 id="hero-title" class="hero-title">Your Web App. Running on Lambda.</h2>
+        <p class="hero-text">
+          A standard Express HTTP server, deployed as a serverless web application.
+        </p>
+      </div>
+      <div class="flow" aria-hidden="true">
+        <div class="flow-node">
+          <span class="flow-node-label">Browser</span>
+          <span class="flow-node-sub">HTTP Request</span>
+        </div>
+        <div class="flow-track">
+          <span class="flow-pulse"></span>
+        </div>
+        <div class="flow-node flow-node--accent">
+          <span class="flow-node-label">Express</span>
+          <span class="flow-node-sub">HTTP Server</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="status-grid" aria-label="Live status">
+      <article class="status-card">
+        <p class="status-card-label">Application Status</p>
+        <p id="card-app-status" class="status-card-value status-card-value--skeleton">—</p>
+        <p class="status-card-hint">Health check result</p>
+      </article>
+      <article class="status-card">
+        <p class="status-card-label">Execution Environment</p>
+        <p id="card-environment" class="status-card-value status-card-value--skeleton">—</p>
+        <p class="status-card-hint">Detected at runtime</p>
+      </article>
+      <article class="status-card">
+        <p class="status-card-label">AWS Region</p>
+        <p id="card-region" class="status-card-value status-card-value--skeleton">—</p>
+        <p class="status-card-hint">Runtime region when available</p>
+      </article>
+      <article class="status-card">
+        <p class="status-card-label">Process Uptime</p>
+        <p id="card-uptime" class="status-card-value status-card-value--skeleton">—</p>
+        <p class="status-card-hint">Current Node.js process</p>
+      </article>
+    </section>
+
+    <div class="panels">
+      <section class="panel panel--api" aria-labelledby="api-panel-title">
+        <div class="panel-header">
+          <h2 id="api-panel-title" class="panel-title">LIVE API RESPONSE</h2>
+          <button
+            id="health-btn"
+            type="button"
+            class="btn"
+          >
+            Run Health Check
+          </button>
+        </div>
+
+        <div class="api-meta" aria-live="polite">
+          <div class="meta-item">
+            <span class="meta-label">HTTP Status</span>
+            <span id="api-http-status" class="meta-value">—</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Response Time</span>
+            <span id="api-response-time" class="meta-value">—</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Request State</span>
+            <span id="api-request-state" class="meta-value">Idle</span>
+          </div>
+        </div>
+
+        <div
+          id="api-error"
+          class="api-error"
+          hidden
+          role="alert"
+        ></div>
+
+        <pre id="api-response" class="code-panel" aria-live="polite"><code>// Click “Run Health Check” to call GET /api/health</code></pre>
+      </section>
+
+      <section class="panel panel--activity" aria-labelledby="activity-title">
+        <div class="panel-header">
+          <h2 id="activity-title" class="panel-title">Request Activity</h2>
+          <span class="panel-caption">This browser session</span>
+        </div>
+        <ul id="activity-list" class="activity-list">
+          <li class="activity-empty" id="activity-empty">
+            No health checks yet. Run a request to see activity here.
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <p>Built with Express · Deployable with AWS Lambda Web Functions</p>
+    </footer>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

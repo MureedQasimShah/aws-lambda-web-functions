@@ -1,0 +1,17 @@
+{
+  "name": "lambda-web-demo",
+  "version": "1.0.0",
+  "description": "Lambda Web Functions Live Status Dashboard — demo Express app for AWS Lambda Web Functions",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "private": true
+}
